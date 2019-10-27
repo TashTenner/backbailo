@@ -12,7 +12,7 @@ require('dotenv').config();
 mongoose.set('useCreateIndex', true);
 // mongoose.set('useFindAndModify', false);
 mongoose
-  .connect('mongodb+srv://Tango:Juli2015@cluster0-tbtpn.mongodb.net/miBiblio?retryWrites=true&w=majority', {
+  .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -27,7 +27,7 @@ mongoose
 // const usersRouter = require('./routes/users');
 
 // const authRouter = require('./routes/auth');
-const venueRouter = require('./routes/venue');
+const venuesRouter = require('./routes/venue');
 
 const app = express();
 
