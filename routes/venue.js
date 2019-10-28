@@ -13,4 +13,18 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/:venueId', async (req, res, next) => {
+  const { venueId } = req.params;
+  try {
+    const venue = await Venue.findById(venueId);
+    if (venue) {
+      res.json(venue);
+    } else {
+      res.json({});
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
