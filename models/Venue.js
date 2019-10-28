@@ -47,12 +47,12 @@ const venueSchema = new Schema(
     rating: Number,
     followers: [String],
   },
-  // {
-  //   timestamps: {
-  //     createdAt: 'created_at',
-  //     updatedAt: 'updated_at',
-  //   },
-  // },
+  {
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
+  },
 );
 
 const Venue = mongoose.model('Venue', venueSchema);
