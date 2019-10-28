@@ -68,4 +68,46 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+router.put('/:schoolId', async (req, res, next) => {
+  const { schoolId } = req.params;
+  const {
+    name,
+    address: {
+      street, number, additionalInfo, postcode, city, country,
+    },
+    coordinates: { lat, lng },
+    dayOfWeek,
+    type,
+    contact: {
+      phoneNr, mail, website,
+      nameOrganizer,
+    },
+    mainPhoto, morePhotos, rating, followers,
+  } = req.body;
+  try {
+    const school = await School.findByIdAndUpdate(schoolId, {
+      name,
+      address: {
+        street, number, additionalInfo, postcode, city, country,
+      },
+      coordinates: { lat, lng },
+      dayOfWeek,
+      type,
+      contact: {
+        phoneNr,
+        mail,
+        website,
+        nameOrganizer,
+      },
+      mainPhoto,
+      morePhotos,
+      rating,
+      followers,
+    });
+    res.json(school);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
