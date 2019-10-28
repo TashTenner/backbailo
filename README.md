@@ -90,14 +90,14 @@ Find and add tango schools and venues around the world.
 | Logout           | POST   | api/auth/logout               | Logout, user/admin                       	     | /logout                          | yes    |
 | Me               | GET    | api/auth/me                   | Check session/ if logged in                    |
 
-							      users:
+users:
 
 | Map              | GET    | api/venues                    | READ: See map with nav-bar, search, milongas   | /                                | yes    |
 | Venue Info Short | GET    | api/venues/:venueId           | READ: See details of milonga in sidebar        | /:id                             | yes    |
 | Venue Info Long  | GET    | api/venues/:venueId           | READ: See details of milonga new page          | /milonga/:id                     | no     |
 | Add Venue        | POST   | api/newVenues                 | CREATE: add new milonga, registered user       | /add/milonga                     | no     |
 
-													       /add                             | yes    |
+| Add General      | --     | ---                           | ---                                            | /add                             | yes    |
 
 | Map              | GET    | api/schools                   | READ: See map with nav-bar, search, schools    | /                                | yes    |
 | School Info Short| GET    | api/schools/:schoolId         | READ: See details of school in sidebar         | /:id                             | yes    |
@@ -107,7 +107,7 @@ Find and add tango schools and venues around the world.
 | Profile          | GET    | api/user/:id                  | See profile page of user                 	     | /profile                         | no     |
 | Profile edited   | PUT    | api/user/:id                  | Edit profile                                   | /profile                         | no     |
 
-							      admin only:
+admin only:
 
 | New Venues       | GET    | api/newVenues                 | READ: See milonga to accept/decline  	     | /admin/newVenues                 | no     |
 | New Venue Info   | GET    | api/newVenues/:newVenueId     | READ: See new milonga details        	     | /admin/newVenues/:newVenueId     | no     |
