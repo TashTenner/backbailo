@@ -27,4 +27,45 @@ router.get('/:schoolId', async (req, res, next) => {
   }
 });
 
+router.post('/', async (req, res, next) => {
+  const {
+    name,
+    address: {
+      street, number, additionalInfo, postcode, city, country,
+    },
+    coordinates: { lat, lng },
+    dayOfWeek,
+    type,
+    contact: {
+      phoneNr, mail, website,
+      nameOrganizer,
+    },
+    mainPhoto, morePhotos, rating, followers,
+  } = req.body;
+  try {
+    const school = await School.create({
+      name,
+      address: {
+        street, number, additionalInfo, postcode, city, country,
+      },
+      coordinates: { lat, lng },
+      dayOfWeek,
+      type,
+      contact: {
+        phoneNr,
+        mail,
+        website,
+        nameOrganizer,
+      },
+      mainPhoto,
+      morePhotos,
+      rating,
+      followers,
+    });
+    res.json(school);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
