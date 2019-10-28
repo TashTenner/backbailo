@@ -27,4 +27,52 @@ router.get('/:venueId', async (req, res, next) => {
   }
 });
 
+router.post('/', async (req, res, next) => {
+  const {
+    name,
+    address: {
+      street, number, additionalInfo, postcode, city, country,
+    },
+    coordinates: { lat, lng },
+    dayOfWeek,
+    type,
+    date: { dStart, dFinish },
+    time: { tStart, tFinish },
+    price: { num, currency },
+    contact: {
+      phoneNr, mail, website,
+      nameOrganizer,
+    },
+    frequency, mainPhoto, morePhotos, rating, followers,
+  } = req.body;
+  try {
+    const venue = await Venue.create({
+      name,
+      address: {
+        street, number, additionalInfo, postcode, city, country,
+      },
+      coordinates: { lat, lng },
+      dayOfWeek,
+      type,
+      date: { dStart, dFinish },
+      time: { tStart, tFinish },
+      price: { num, currency },
+      contact: {
+        phoneNr,
+        mail,
+        website,
+        nameOrganizer,
+      },
+      frequency,
+      mainPhoto,
+      morePhotos,
+      rating,
+      followers,
+    });
+    res.json(venue);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
