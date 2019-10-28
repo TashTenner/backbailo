@@ -110,4 +110,14 @@ router.put('/:schoolId', async (req, res, next) => {
   }
 });
 
+router.delete('/:schoolId', async (req, res, next) => {
+  const { schoolId } = req.params;
+  try {
+    const school = await School.findByIdAndDelete(schoolId);
+    res.json(school);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
