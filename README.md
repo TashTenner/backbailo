@@ -216,10 +216,10 @@ User model
 The url to your repository and to your deployed project
 
 ​
-[Repository Frontend Link](http://github.com/)
+[Repository Frontend Link](https://github.com/TashTenner/frontbailo)
 
 ​
-[Repository Backend Link](https://github.com/TashTenner/bailoBack)
+[Repository Backend Link](https://github.com/TashTenner/backbailo)
 
 ​
 [Deploy Link](http://heroku.com/)
