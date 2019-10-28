@@ -88,9 +88,9 @@ Find and add tango schools and venues around the world.
 | Register         | POST   | api/auth/register             | Register, user/admin                     	     | /register                        | yes    |
 | Login            | POST   | api/auth/login                | Login, user/admin                        	     | /login                           | yes    | 
 | Logout           | POST   | api/auth/logout               | Logout, user/admin                       	     | /logout                          | yes    |
-| Me               | GET    | api/auth/me                   | Check session/ if logged in                    |
+| Me               | GET    | api/auth/me                   | Check session/ if logged in                    |                                  |        |
 
-users:
+| users            |        |                               |                                                |                                  |        |
 
 | Map              | GET    | api/venues                    | READ: See map with nav-bar, search, milongas   | /                                | yes    |
 | Venue Info Short | GET    | api/venues/:venueId           | READ: See details of milonga in sidebar        | /:id                             | yes    |
@@ -107,7 +107,7 @@ users:
 | Profile          | GET    | api/user/:id                  | See profile page of user                 	     | /profile                         | no     |
 | Profile edited   | PUT    | api/user/:id                  | Edit profile                                   | /profile                         | no     |
 
-admin only:
+| admin only       |        |                               |                                                |                                  |        |
 
 | New Venues       | GET    | api/newVenues                 | READ: See milonga to accept/decline  	     | /admin/newVenues                 | no     |
 | New Venue Info   | GET    | api/newVenues/:newVenueId     | READ: See new milonga details        	     | /admin/newVenues/:newVenueId     | no     |
@@ -126,6 +126,8 @@ admin only:
 | Edit New School  | PUT    | api/newSchools/:newSchoolId   | UPDATE: Edit details of new school  	     | /admin/newSchools/edit           | no     |
 | Delete School    | DELETE | api/schools/:schoolId         | DELETE: Delete school               	     | /admin/schools                   | no     |
 | Delete New School| DELETE | api/newSchools/:newSchoolId   | DELETE: Delete new school after accept/decline | /admin/newSchools                | no     |
+
+
 
 ## Models
 
