@@ -29,6 +29,7 @@ const schoolSchema = new Schema(
     morePhotos: [String],
     rating: Number,
     followers: [String],
+    status: { type: String, enum: ['pending', 'accepted', 'rejected'] },
   },
   {
     timestamps: {
