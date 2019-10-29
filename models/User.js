@@ -9,6 +9,7 @@ const userSchema = new Schema(
     userName: String,
     location: String,
     age: Number,
+    status: { type: String, enum: ['pending', 'accepted', 'rejected'] },
     // image: {
     //   type: String,
     //   default: './images/default_profile_pic.png',
