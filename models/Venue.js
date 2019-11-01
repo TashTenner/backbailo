@@ -8,51 +8,43 @@ const { Schema } = mongoose;
 // name of the organizer will be a link to the user
 const venueSchema = new Schema(
   {
-    name: { type: String, required: true },
-    address: {
-      street: String,
-      number: Number,
-      additionalInfo: String,
-      postcode: String,
-      city: String,
-      country: String,
+    type: { type: String, enum: ['Feature'], required: true },
+    geometry: {
+      type: {
+        type: String, // Don't do `{ location: { type: String } }`
+        enum: ['Point'], // 'location.type' must be 'Point'
+        required: true,
+      },
+      coordinates: {
+        type: [Number], // lng, lat
+        required: true,
+      },
     },
-    coordinates: {
-      lat: Number,
-      lng: Number,
-    },
-    dayOfWeek: { type: String, enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] },
-    type: { type: String, enum: ['milonga', 'practica', 'school'] },
-    date: {
-      dStart: String,
-      dFinish: String,
-    },
-    time: {
-      tStart: String,
-      tFinish: String,
-    },
-    price: {
-      number: Number,
-      currency: String,
-    },
-    contact: {
+    properties: {
+      name: { type: String, required: true },
+      address: String,
+      mapOption: { type: String, enum: ['milonga', 'practica', 'school'] },
+      date: Date,
+      frequency: { type: String, enum: ['Once a week', 'Twice a month', 'Once a month'] },
+      startTime: Date,
+      endTime: Date,
+      price: String,
       phoneNr: String,
       mail: String,
       website: String,
       nameOrganizer: String,
+      mainPhoto: String,
+      morePhotos: [String],
+      rating: Number,
+      followers: [String],
     },
-    frequency: String,
-    mainPhoto: String,
-    morePhotos: [String],
-    rating: Number,
-    followers: [String],
   },
-  // {
-  //   timestamps: {
-  //     createdAt: 'created_at',
-  //     updatedAt: 'updated_at',
-  //   },
-  // },
+  {
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
+  },
 );
 
 const Venue = mongoose.model('Venue', venueSchema);
