@@ -34,9 +34,9 @@ const venueSchema = new Schema(
       website: String,
       nameOrganizer: String,
       mainPhoto: String,
-      morePhotos: [String],
+      // morePhotos: [String],
       rating: Number,
-      followers: [String],
+      // followers: [String],
     },
   },
   {

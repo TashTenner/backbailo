@@ -115,7 +115,7 @@ router.put('/:venueId', async (req, res, next) => {
   }
 });
 
-router.delete('/:venueId', async (req, res, next) => {
+router.delete('/:venueId/delete', async (req, res, next) => {
   const { venueId } = req.params;
   try {
     const venue = await Venue.findByIdAndDelete(venueId);
