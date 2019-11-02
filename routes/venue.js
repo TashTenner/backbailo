@@ -65,13 +65,15 @@ router.put('/:venueId', async (req, res, next) => {
   console.log(req.body);
   console.log(req.params);
   console.log('req.body.properties.name:', req.body.properties.name);
+
   const { venueId } = req.params;
-  const updatedVenue = {};
-  console.log('updatedVenue.properties.name:', updatedVenue.properties.name);
+
+  // const updatedVenue = {};
+  // console.log('updatedVenue.properties.name:', updatedVenue.properties.name);
   // updatedVenue.name = req.body.name;
   // updatedVenue.email = req.body.email;
   // updatedVenue.geometry.coordinates[0] = req.body.geometry.coordinates[0];
-  updatedVenue.properties.name = req.body.properties.name;
+  // updatedVenue.properties.name = req.body.properties.name;
   // updatedVenue.properties = {
   //   name: req.body.properties.name,
   //   address: req.body.properties.address,
@@ -100,7 +102,7 @@ router.put('/:venueId', async (req, res, next) => {
   //   },
   // } = req.body;
   try {
-    const venue = await Venue.findByIdAndUpdate(venueId, updatedVenue, { new: true });
+    const venue = await Venue.findByIdAndUpdate(venueId, req.body, { new: true });
     //   {
     //   // eslint-disable-next-line max-len
     //   coordinates, morePhotos, followers, name, address, mapOption, date, frequency, startTime, endTime, price, phoneNr, mail, website, nameOrganizer, mainPhoto, rating,
