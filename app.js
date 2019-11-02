@@ -5,13 +5,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
-// const bodyParser = require('body-parser');
 const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
 require('dotenv').config();
 
 mongoose.set('useCreateIndex', true);
-// mongoose.set('useFindAndModify', false);
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -24,9 +22,6 @@ mongoose
   .catch((error) => {
     console.error(error);
   });
-
-// const indexRouter = require('./routes/index');
-// const usersRouter = require('./routes/users');
 
 // const authRouter = require('./routes/auth');
 const venuesRouter = require('./routes/venue');
@@ -54,18 +49,6 @@ app.use(
     },
   }),
 );
-
-// // parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: true }));
-
-// // parse application/json
-// app.use(bodyParser.json());
-
-// app.use((req, res) => {
-//   res.setHeader('Content-Type', 'text/plain');
-//   res.write('you posted:\n');
-//   res.end(JSON.stringify(req.body, null, 2));
-// });
 
 app.use(
   cors({

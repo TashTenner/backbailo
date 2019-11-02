@@ -4,32 +4,34 @@ const { Schema } = mongoose;
 
 const schoolSchema = new Schema(
   {
-    name: { type: String, required: true },
-    address: {
-      street: String,
-      number: Number,
-      additionalInfo: String,
-      postcode: String,
-      city: String,
-      country: String,
+    type: { type: String, enum: ['Feature'], required: true },
+    geometry: {
+      type: {
+        type: String,
+        enum: ['Point'],
+        required: true,
+      },
+      coordinates: {
+        type: [Number], // lng, lat
+        required: true,
+      },
     },
-    coordinates: {
-      lat: Number,
-      lng: Number,
-    },
-    dayOfWeek: { type: [String], enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] },
-    type: { type: String, enum: ['school'] },
-    contact: {
+    properties: {
+      name: { type: String, required: true },
+      address: String,
+      mapOption: { type: String, enum: ['school'], required: true },
+      // dayOfWeek: { type: [String], enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] },
       phoneNr: String,
       mail: String,
       website: String,
       nameOrganizer: String,
+      mainPhoto: String,
+      // morePhotos: [String],
+      rating: Number,
+      creator: { type: String, enum: ['user', 'client', 'admin'], required: true },
+      status: { type: String, enum: ['pending', 'approved', 'rejected'], required: true },
+      // followers: [String],
     },
-    mainPhoto: String,
-    morePhotos: [String],
-    rating: Number,
-    followers: [String],
-    status: { type: String, enum: ['pending', 'accepted', 'rejected'] },
   },
   {
     timestamps: {
@@ -37,6 +39,7 @@ const schoolSchema = new Schema(
       updatedAt: 'updated_at',
     },
   },
+
 );
 
 const School = mongoose.model('School', schoolSchema);

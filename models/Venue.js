@@ -1,18 +1,14 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-// venue needs to be changed to venue
-// either starting and finishing date OR continously
-// continously: boolean;
-// mongoose and mongodb require to start with lng
-// name of the organizer will be a link to the user
+
 const venueSchema = new Schema(
   {
     type: { type: String, enum: ['Feature'], required: true },
     geometry: {
       type: {
-        type: String, // Don't do `{ location: { type: String } }`
-        enum: ['Point'], // 'location.type' must be 'Point'
+        type: String,
+        enum: ['Point'],
         required: true,
       },
       coordinates: {
@@ -23,7 +19,7 @@ const venueSchema = new Schema(
     properties: {
       name: { type: String, required: true },
       address: String,
-      mapOption: { type: String, enum: ['milonga', 'practica', 'school'], required: true },
+      mapOption: { type: String, enum: ['milonga', 'practica'], required: true },
       date: Date,
       frequency: { type: String, enum: ['Once a week', 'Twice a month', 'Once a month'] },
       startTime: Date,
