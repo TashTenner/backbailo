@@ -23,7 +23,7 @@ const venueSchema = new Schema(
     properties: {
       name: { type: String, required: true },
       address: String,
-      mapOption: { type: String, enum: ['milonga', 'practica', 'school'] },
+      mapOption: { type: String, enum: ['milonga', 'practica', 'school'], required: true },
       date: Date,
       frequency: { type: String, enum: ['Once a week', 'Twice a month', 'Once a month'] },
       startTime: Date,
@@ -36,6 +36,8 @@ const venueSchema = new Schema(
       mainPhoto: String,
       // morePhotos: [String],
       rating: Number,
+      creator: { type: String, enum: ['user', 'client', 'admin'], required: true },
+      status: { type: String, enum: ['pending', 'approved', 'rejected'], required: true },
       // followers: [String],
     },
   },
