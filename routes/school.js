@@ -3,7 +3,6 @@ const School = require('../models/School');
 
 const router = express.Router();
 
-/* GET list of all schools */
 router.get('/', async (req, res, next) => {
   try {
     const schools = await School.find();
@@ -27,90 +26,26 @@ router.get('/:schoolId', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
-  const {
-    name,
-    address: {
-      street, number, additionalInfo, postcode, city, country,
-    },
-    coordinates: { lat, lng },
-    dayOfWeek,
-    type,
-    contact: {
-      phoneNr, mail, website,
-      nameOrganizer,
-    },
-    mainPhoto, morePhotos, rating, followers,
-  } = req.body;
+router.post('/new', async (req, res, next) => {
   try {
-    const school = await School.create({
-      name,
-      address: {
-        street, number, additionalInfo, postcode, city, country,
-      },
-      coordinates: { lat, lng },
-      dayOfWeek,
-      type,
-      contact: {
-        phoneNr,
-        mail,
-        website,
-        nameOrganizer,
-      },
-      mainPhoto,
-      morePhotos,
-      rating,
-      followers,
-    });
+    const school = await School.create(req.body);
     res.json(school);
   } catch (error) {
     next(error);
   }
 });
 
-router.put('/:schoolId', async (req, res, next) => {
+router.put('/:schoolId/edit', async (req, res, next) => {
   const { schoolId } = req.params;
-  const {
-    name,
-    address: {
-      street, number, additionalInfo, postcode, city, country,
-    },
-    coordinates: { lat, lng },
-    dayOfWeek,
-    type,
-    contact: {
-      phoneNr, mail, website,
-      nameOrganizer,
-    },
-    mainPhoto, morePhotos, rating, followers,
-  } = req.body;
   try {
-    const school = await School.findByIdAndUpdate(schoolId, {
-      name,
-      address: {
-        street, number, additionalInfo, postcode, city, country,
-      },
-      coordinates: { lat, lng },
-      dayOfWeek,
-      type,
-      contact: {
-        phoneNr,
-        mail,
-        website,
-        nameOrganizer,
-      },
-      mainPhoto,
-      morePhotos,
-      rating,
-      followers,
-    });
+    const school = await School.findByIdAndUpdate(schoolId, req.body, { new: true });
     res.json(school);
   } catch (error) {
     next(error);
   }
 });
 
-router.delete('/:schoolId', async (req, res, next) => {
+router.delete('/:schoolId/delete', async (req, res, next) => {
   const { schoolId } = req.params;
   try {
     const school = await School.findByIdAndDelete(schoolId);
