@@ -19,7 +19,7 @@ const venueSchema = new Schema(
     properties: {
       name: { type: String, required: true },
       address: String,
-      mapOption: { type: String, enum: ['milonga', 'practica'], required: true },
+      // mapOption: { type: String, enum: ['milonga', 'practica'], required: true },
       date: Date,
       frequency: { type: String, enum: ['Once a week', 'Twice a month', 'Once a month'] },
       startTime: String,

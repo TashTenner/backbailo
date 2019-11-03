@@ -19,7 +19,7 @@ const schoolSchema = new Schema(
     properties: {
       name: { type: String, required: true },
       address: String,
-      mapOption: { type: String, enum: ['school'], required: true },
+      // mapOption: { type: String, enum: ['school'], required: true },
       // dayOfWeek: { type: [String], enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] },
       phoneNr: String,
       mail: String,
