@@ -24,7 +24,7 @@ const schoolSchema = new Schema(
       // nameOrganizer: String,
       // mainPhoto: String,
       // rating: Number,
-      creator: { type: String, enum: ['user', 'client', 'admin'], default: 'Feature' },
+      creator: { type: String, enum: ['user', 'client', 'admin'], default: 'admin' },
       status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'approved' },
     },
   },
