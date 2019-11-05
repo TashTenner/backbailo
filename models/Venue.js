@@ -4,12 +4,11 @@ const { Schema } = mongoose;
 
 const venueSchema = new Schema(
   {
-    type: { type: String, enum: ['Feature'], required: true },
+    type: { type: String, default: 'Feature' },
     geometry: {
       type: {
         type: String,
-        enum: ['Point'],
-        required: true,
+        default: 'Point',
       },
       coordinates: {
         type: [Number], // lng, lat
@@ -21,19 +20,19 @@ const venueSchema = new Schema(
       address: String,
       // mapOption: { type: String, enum: ['milonga', 'practica'], required: true },
       date: Date,
-      frequency: { type: String, enum: ['Once a week', 'Twice a month', 'Once a month'] },
+      frequency: { type: String, enum: ['once a week', 'twice a month', 'once a month'] },
       startTime: String,
       endTime: String,
       price: String,
       phoneNr: String,
       mail: String,
       website: String,
-      nameOrganizer: String,
-      mainPhoto: String,
+      // nameOrganizer: String,
+      // mainPhoto: String,
       // morePhotos: [String],
-      rating: Number,
-      creator: { type: String, enum: ['user', 'client', 'admin'], required: true },
-      status: { type: String, enum: ['pending', 'approved', 'rejected'], required: true },
+      // rating: Number,
+      creator: { type: String, enum: ['user', 'client', 'admin'], default: 'Feature' },
+      status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'approved' },
       // followers: [String],
     },
   },
