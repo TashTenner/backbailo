@@ -4,12 +4,11 @@ const { Schema } = mongoose;
 
 const schoolSchema = new Schema(
   {
-    type: { type: String, enum: ['Feature'], required: true },
+    type: { type: String, default: 'Feature' },
     geometry: {
       type: {
         type: String,
-        enum: ['Point'],
-        required: true,
+        default: 'Point',
       },
       coordinates: {
         type: [Number], // lng, lat
@@ -19,18 +18,14 @@ const schoolSchema = new Schema(
     properties: {
       name: { type: String, required: true },
       address: String,
-      // mapOption: { type: String, enum: ['school'], required: true },
-      // dayOfWeek: { type: [String], enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] },
       phoneNr: String,
       mail: String,
       website: String,
-      nameOrganizer: String,
-      mainPhoto: String,
-      // morePhotos: [String],
-      rating: Number,
-      creator: { type: String, enum: ['user', 'client', 'admin'], required: true },
-      status: { type: String, enum: ['pending', 'approved', 'rejected'], required: true },
-      // followers: [String],
+      // nameOrganizer: String,
+      // mainPhoto: String,
+      // rating: Number,
+      creator: { type: String, enum: ['user', 'client', 'admin'], default: 'Feature' },
+      status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'approved' },
     },
   },
   {
