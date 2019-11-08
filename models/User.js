@@ -6,14 +6,14 @@ const userSchema = new Schema(
   {
     username: { type: String, required: true, unique: true },
     hashedPassword: { type: String, required: true },
-    userName: String,
-    location: String,
-    age: Number,
-    status: { type: String, enum: ['pending', 'approved', 'rejected'], required: true },
-    // image: {
-    //   type: String,
-    //   default: './images/default_profile_pic.png',
-    // },
+    // userName: String,
+    // location: String,
+    // age: Number,
+    // status: { type: String, enum: ['pending', 'approved', 'rejected'], required: true },
+    // // image: {
+    // //   type: String,
+    // //   default: './images/default_profile_pic.png',
+    // // },
   },
   {
     timestamps: {
