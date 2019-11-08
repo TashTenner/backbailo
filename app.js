@@ -23,7 +23,7 @@ mongoose
     console.error(error);
   });
 
-// const authRouter = require('./routes/auth');
+const authRouter = require('./routes/auth');
 const venuesRouter = require('./routes/venue');
 const schoolsRouter = require('./routes/school');
 
@@ -57,15 +57,14 @@ app.use(
   }),
 );
 
-// // app.use((req, res, next) => {
-// //   app.locals.currentUser = req.session.currentUser;
-// //   next();
-// // });
+app.use((req, res, next) => {
+  app.locals.currentUser = req.session.currentUser;
+  next();
+});
 
-// app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
-// app.use('/', authRouter);
+app.use('/', authRouter);
 app.use('/api/venues', venuesRouter);
 app.use('/api/schools', schoolsRouter);
 
