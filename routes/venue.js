@@ -3,10 +3,10 @@ const Venue = require('../models/Venue');
 
 const router = express.Router();
 
-const {
-  // checkUsernameAndPasswordNotEmpty,
-  checkIfLoggedIn,
-} = require('../middlewares/index');
+// const {
+//   // checkUsernameAndPasswordNotEmpty,
+//   checkIfLoggedIn,
+// } = require('../middlewares/index');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -31,7 +31,7 @@ router.get('/:venueId', async (req, res, next) => {
   }
 });
 
-router.post('/new', checkIfLoggedIn, async (req, res, next) => {
+router.post('/new', async (req, res, next) => {
   try {
     const venue = await Venue.create(req.body);
     res.json(venue);
@@ -40,7 +40,7 @@ router.post('/new', checkIfLoggedIn, async (req, res, next) => {
   }
 });
 
-router.put('/:venueId/edit', checkIfLoggedIn, async (req, res, next) => {
+router.put('/:venueId/edit', async (req, res, next) => {
   const { venueId } = req.params;
   try {
     const venue = await Venue.findByIdAndUpdate(venueId, req.body, { new: true });
@@ -50,7 +50,7 @@ router.put('/:venueId/edit', checkIfLoggedIn, async (req, res, next) => {
   }
 });
 
-router.delete('/:venueId/delete', checkIfLoggedIn, async (req, res, next) => {
+router.delete('/:venueId/delete', async (req, res, next) => {
   const { venueId } = req.params;
   try {
     const venue = await Venue.findByIdAndDelete(venueId);
