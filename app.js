@@ -24,6 +24,7 @@ mongoose
   });
 
 const authRouter = require('./routes/auth');
+const usersRouter = require('./routes/user');
 const venuesRouter = require('./routes/venue');
 const practicasRouter = require('./routes/practica');
 const schoolsRouter = require('./routes/school');
@@ -63,9 +64,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use('/users', usersRouter);
-
 app.use('/', authRouter);
+app.use('/api/users', usersRouter);
 app.use('/api/venues', venuesRouter);
 app.use('/api/practicas', practicasRouter);
 app.use('/api/schools', schoolsRouter);
