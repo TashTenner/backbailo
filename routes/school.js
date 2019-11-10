@@ -3,10 +3,10 @@ const School = require('../models/School');
 
 const router = express.Router();
 
-const {
-  // checkUsernameAndPasswordNotEmpty,
-  checkIfLoggedIn,
-} = require('../middlewares/index');
+// const {
+//   // checkUsernameAndPasswordNotEmpty,
+//   checkIfLoggedIn,
+// } = require('../middlewares/index');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -31,7 +31,7 @@ router.get('/:schoolId', async (req, res, next) => {
   }
 });
 
-router.post('/new', checkIfLoggedIn, async (req, res, next) => {
+router.post('/new', async (req, res, next) => {
   try {
     const school = await School.create(req.body);
     res.json(school);
@@ -40,7 +40,7 @@ router.post('/new', checkIfLoggedIn, async (req, res, next) => {
   }
 });
 
-router.put('/:schoolId/edit', checkIfLoggedIn, async (req, res, next) => {
+router.put('/:schoolId/edit', async (req, res, next) => {
   const { schoolId } = req.params;
   try {
     const school = await School.findByIdAndUpdate(schoolId, req.body, { new: true });
@@ -50,7 +50,7 @@ router.put('/:schoolId/edit', checkIfLoggedIn, async (req, res, next) => {
   }
 });
 
-router.delete('/:schoolId/delete', checkIfLoggedIn, async (req, res, next) => {
+router.delete('/:schoolId/delete', async (req, res, next) => {
   const { schoolId } = req.params;
   try {
     const school = await School.findByIdAndDelete(schoolId);
