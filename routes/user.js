@@ -3,6 +3,11 @@ const User = require('../models/User');
 
 const router = express.Router();
 
+const {
+  checkUsernameAndPasswordNotEmpty,
+  checkIfLoggedIn,
+} = require('../middlewares/index');
+
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.find();
@@ -26,7 +31,7 @@ router.get('/:userId', async (req, res, next) => {
   }
 });
 
-router.put('/:userId/edit', async (req, res, next) => {
+router.put('/:userId/edit', checkUsernameAndPasswordNotEmpty, checkIfLoggedIn, async (req, res, next) => {
   const { userId } = req.params;
   try {
     const user = await User.findByIdAndUpdate(userId, req.body, { new: true });
