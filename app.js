@@ -1,12 +1,12 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const cors = require('cors');
+const cors = require('cors')({ origin: true, credentials: true });
 require('dotenv').config();
 
 mongoose.set('useCreateIndex', true);
@@ -46,18 +46,26 @@ app.use(
     secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true,
+    name: 'tangomaps',
     cookie: {
       maxAge: 24 * 60 * 60 * 1000,
+      sameSite: 'none', // esta es la linea importante
+      secure: process.env.NODE_ENV === 'production',
     },
   }),
 );
 
-app.use(
-  cors({
-    credentials: true,
-    origin: [process.env.FRONTEND_URL],
-  }),
-);
+app.set('trust proxy', true);
+app.use(cors);
+app.options('*', cors);
+
+// este se borra?
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: [process.env.FRONTEND_URL],
+//   }),
+// );
 
 app.use((req, res, next) => {
   app.locals.currentUser = req.session.currentUser;
