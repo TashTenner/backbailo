@@ -59,7 +59,6 @@ app.set('trust proxy', true);
 app.use(cors);
 app.options('*', cors);
 
-// este se borra?
 // app.use(
 //   cors({
 //     credentials: true,

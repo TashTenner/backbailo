@@ -3,11 +3,6 @@ const Venue = require('../models/Venue');
 
 const router = express.Router();
 
-// const {
-//   // checkUsernameAndPasswordNotEmpty,
-//   checkIfLoggedIn,
-// } = require('../middlewares/index');
-
 router.get('/', async (req, res, next) => {
   try {
     const venues = await Venue.find();

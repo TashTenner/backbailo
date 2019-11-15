@@ -3,11 +3,6 @@ const Practica = require('../models/Practica');
 
 const router = express.Router();
 
-// const {
-//   // checkUsernameAndPasswordNotEmpty,
-//   checkIfLoggedIn,
-// } = require('../middlewares/index');
-
 router.get('/', async (req, res, next) => {
   try {
     const practicas = await Practica.find();

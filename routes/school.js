@@ -3,11 +3,6 @@ const School = require('../models/School');
 
 const router = express.Router();
 
-// const {
-//   // checkUsernameAndPasswordNotEmpty,
-//   checkIfLoggedIn,
-// } = require('../middlewares/index');
-
 router.get('/', async (req, res, next) => {
   try {
     const schools = await School.find();

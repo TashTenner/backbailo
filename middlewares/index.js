@@ -18,7 +18,19 @@ const checkUsernameAndPasswordNotEmpty = (req, res, next) => {
   }
 };
 
+// const checkDomain = (req, res, next) => {
+//   const { hostname } = req;
+
+//   if (hostname === 'https://bailo.netlify.com/') {
+//     res.locals.auth = req.body;
+//     next();
+//   } else {
+//     res.status(422).json({ code: 'unauthorized' });
+//   }
+// };
+
 module.exports = {
   checkIfLoggedIn,
   checkUsernameAndPasswordNotEmpty,
+  // checkDomain,
 };

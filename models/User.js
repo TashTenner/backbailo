@@ -8,13 +8,6 @@ const userSchema = new Schema(
     hashedPassword: { type: String, required: true },
     roles: { type: String, enum: ['user', 'client', 'admin'], default: 'user' },
     status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'approved' },
-    // userName: String,
-    // location: String,
-    // age: Number,
-    // // image: {
-    // //   type: String,
-    // //   default: './images/default_profile_pic.png',
-    // // },
   },
   {
     timestamps: {
