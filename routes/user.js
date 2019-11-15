@@ -6,10 +6,9 @@ const router = express.Router();
 const {
   checkUsernameAndPasswordNotEmpty,
   checkIfLoggedIn,
-  checkDomain,
 } = require('../middlewares/index');
 
-router.get('/', checkDomain, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const users = await User.find();
     res.json(users);
@@ -18,7 +17,7 @@ router.get('/', checkDomain, async (req, res, next) => {
   }
 });
 
-router.get('/:userId', checkDomain, async (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
   const { userId } = req.params;
   try {
     const user = await User.findById(userId);
@@ -32,7 +31,7 @@ router.get('/:userId', checkDomain, async (req, res, next) => {
   }
 });
 
-router.put('/:userId/edit', checkDomain, checkUsernameAndPasswordNotEmpty, checkIfLoggedIn, async (req, res, next) => {
+router.put('/:userId/edit', checkUsernameAndPasswordNotEmpty, checkIfLoggedIn, async (req, res, next) => {
   const { userId } = req.params;
   try {
     const user = await User.findByIdAndUpdate(userId, req.body, { new: true });
