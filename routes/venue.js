@@ -3,12 +3,9 @@ const Venue = require('../models/Venue');
 
 const router = express.Router();
 
-// const {
-//   // checkUsernameAndPasswordNotEmpty,
-//   checkIfLoggedIn,
-// } = require('../middlewares/index');
+const { checkDomain } = require('../middlewares');
 
-router.get('/', async (req, res, next) => {
+router.get('/', checkDomain, async (req, res, next) => {
   try {
     const venues = await Venue.find();
     res.json(venues);
@@ -17,7 +14,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:venueId', async (req, res, next) => {
+router.get('/:venueId', checkDomain, async (req, res, next) => {
   const { venueId } = req.params;
   try {
     const venue = await Venue.findById(venueId);
@@ -31,7 +28,7 @@ router.get('/:venueId', async (req, res, next) => {
   }
 });
 
-router.post('/new', async (req, res, next) => {
+router.post('/new', checkDomain, async (req, res, next) => {
   try {
     const venue = await Venue.create(req.body);
     res.json(venue);
@@ -40,7 +37,7 @@ router.post('/new', async (req, res, next) => {
   }
 });
 
-router.put('/:venueId/edit', async (req, res, next) => {
+router.put('/:venueId/edit', checkDomain, async (req, res, next) => {
   const { venueId } = req.params;
   try {
     const venue = await Venue.findByIdAndUpdate(venueId, req.body, { new: true });
@@ -50,7 +47,7 @@ router.put('/:venueId/edit', async (req, res, next) => {
   }
 });
 
-router.delete('/:venueId/delete', async (req, res, next) => {
+router.delete('/:venueId/delete', checkDomain, async (req, res, next) => {
   const { venueId } = req.params;
   try {
     const venue = await Venue.findByIdAndDelete(venueId);

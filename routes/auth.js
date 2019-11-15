@@ -2,7 +2,6 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 
 const { checkUsernameAndPasswordNotEmpty } = require('../middlewares');
-
 const User = require('../models/User');
 
 const bcryptSalt = 10;

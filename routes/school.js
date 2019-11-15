@@ -3,12 +3,9 @@ const School = require('../models/School');
 
 const router = express.Router();
 
-// const {
-//   // checkUsernameAndPasswordNotEmpty,
-//   checkIfLoggedIn,
-// } = require('../middlewares/index');
+const { checkDomain } = require('../middlewares');
 
-router.get('/', async (req, res, next) => {
+router.get('/', checkDomain, async (req, res, next) => {
   try {
     const schools = await School.find();
     res.json(schools);
@@ -17,7 +14,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:schoolId', async (req, res, next) => {
+router.get('/:schoolId', checkDomain, async (req, res, next) => {
   const { schoolId } = req.params;
   try {
     const school = await School.findById(schoolId);
@@ -31,7 +28,7 @@ router.get('/:schoolId', async (req, res, next) => {
   }
 });
 
-router.post('/new', async (req, res, next) => {
+router.post('/new', checkDomain, async (req, res, next) => {
   try {
     const school = await School.create(req.body);
     res.json(school);
@@ -40,7 +37,7 @@ router.post('/new', async (req, res, next) => {
   }
 });
 
-router.put('/:schoolId/edit', async (req, res, next) => {
+router.put('/:schoolId/edit', checkDomain, async (req, res, next) => {
   const { schoolId } = req.params;
   try {
     const school = await School.findByIdAndUpdate(schoolId, req.body, { new: true });
@@ -50,7 +47,7 @@ router.put('/:schoolId/edit', async (req, res, next) => {
   }
 });
 
-router.delete('/:schoolId/delete', async (req, res, next) => {
+router.delete('/:schoolId/delete', checkDomain, async (req, res, next) => {
   const { schoolId } = req.params;
   try {
     const school = await School.findByIdAndDelete(schoolId);
